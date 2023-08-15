@@ -1,9 +1,10 @@
 #include "main.h"
+#include <unistd.h>
 
 /**
- * print_alphabet - prints the alphabet 
- * Return:0 if successfully compiled
-*/
+ * print_alphabet - Entry point
+ * Return:0
+ */
 
 void print_alphabet(void)
 {
@@ -18,3 +19,4 @@ void print_alphabet(void)
 	_putchar('\n');
 
 }
+
