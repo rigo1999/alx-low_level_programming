@@ -6,10 +6,11 @@
 
 int main(void)
 {
-unsigned long long number = 612852475143;
-unsigned long long largest_prime_factor = 0;
+unsigned long number = 612852475143;
+unsigned long largest_prime_factor = 0;
+unsigned long i;
 
-for (unsigned long long i = 2; i * i <= number; i++)
+for (i = 2; i * i <= number; i++)
 {
 while (number % i == 0)
 {
@@ -21,7 +22,7 @@ number /= i;
 if (number > 1)
 largest_prime_factor = number;
 
-printf("%llu\n", largest_prime_factor);
+printf("%lu\n", largest_prime_factor);
 
 return (0);
 }
