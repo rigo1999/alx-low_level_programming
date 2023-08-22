@@ -14,7 +14,8 @@ int mid = length / 2;
 
 if (length % 2 == 0)
 {
-for (int i = mid; i < length; i++)
+int i;
+for (i = mid; i < length; i++)
 {
 printf("%c", str[i]);
 }
