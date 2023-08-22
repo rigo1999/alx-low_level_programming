@@ -1,5 +1,6 @@
 #include "main.h"
-
+#include <string.h>
+#include <stdio.h>
 /**
  * puts_half - prints half of a string
  * followed by a new line
@@ -20,7 +21,9 @@ printf("%c", str[i]);
 }
 else
 {
-for (int i = mid + 1; i < length; i++)
+int i;
+
+for (i = mid + 1; i < length; i++)
 {
 printf("%c", str[i]);
 }
