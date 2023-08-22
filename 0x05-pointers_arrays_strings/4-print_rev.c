@@ -23,4 +23,3 @@ _putchar(s[j]);
 }
 _putchar('\n');
 }
-}
