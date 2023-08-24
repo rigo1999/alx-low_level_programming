@@ -1,4 +1,4 @@
-/#include "main.h"
+#include "main.h"
 /**
  * leet - change vowels to numbers accordingly.
  * @s: analized string.
