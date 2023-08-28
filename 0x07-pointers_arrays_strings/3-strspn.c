@@ -23,8 +23,6 @@ while (accept[y] != '\0')
 if (accept[y] == s[i])
 {
 count++;
-checker = 1;
-/* Break to early increase efficiency */
 break;
 }
 z++;
