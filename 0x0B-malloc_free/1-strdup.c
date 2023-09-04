@@ -8,28 +8,27 @@
  *
  * Return: If str == NULL or insufficient memory is available - NULL.
  *         Otherwise - a pointer to the duplicated string.
-*/
+ */
 char *_strdup(char *str)
 {
 	char *new_str;
-	int i, len;
-	int len = strlen(str) + 1;
-	
+	int index, len = 0;
 
 	if (str == NULL)
 		return (NULL);
 
-	//for (i = 0; str[i]; i++)
-		//len++;
+	for (index = 0; str[index]; index++)
+		len++;
 
-	new_str = malloc(sizeof(char) * len);
+	new_str = malloc(sizeof(char) * (len + 1));
 
 	if (new_str == NULL)
 		return (NULL);
 
-	for (i = 0; i < len; i++)
-		new_str[i] = str[i];
-		
-			new_str[len] = '\0';
+	for (index = 0; str[index]; index++)
+		new_str[index] = str[index];
+
+	new_str[len] = '\0';
+
 	return (new_str);
 }
