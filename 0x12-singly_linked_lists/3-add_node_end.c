@@ -1,3 +1,7 @@
+
+#include <stdlib.h>
+#include <string.h>
+#include "lists.h"
 /**
  * add_node_end - adds a new node at the end of a linked list
  * @head: double pointer to the list_t list
