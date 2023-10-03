@@ -5,17 +5,16 @@
  * @filename: filename.
  * @text_content: content writen in the file.
  *
- * Return: 1 if it success. -1 if  fails.
+ * Return: 1 if it success. -1 if failure.
  */
 int create_file(const char *filename, char *text_content)
 {
-	int len;
-	int bytes_written;
+	int fd, len, bytes_written;
 
 	if (!filename)
 		return (-1);
 
-	int fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
 
 	if (fd == -1)
 		return (-1);
