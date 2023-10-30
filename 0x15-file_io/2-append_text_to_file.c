@@ -1,39 +1,31 @@
 #include "main.h"
+#include <string.h>
 
 /**
- * read_textfile - Reads and prints a text file
- * @filename: The name of the file
- * @letters: The number of letters to read and print
- * Return: The actual number of letters read and printed
+ * create_file - Creates a file with specified content.
+ * @filename: The name of the file to create.
+ * @text_content: The content to write in the file.
+ * Return: 1 on success, -1 on failure.
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+int create_file(const char *filename, char *text_content)
 {
-	int file_d;
-	ssize_t r_bytes, w_bytes;
-	char *buff;
+	int file_desc, bytes_w;
 
 	if (filename == NULL)
-		return (0);
-
-	file_d = open(filename, O_RDONLY);
-	if (file_d == -1)
-		return (0);
-	buff = malloc(sizeof(char) * letters);
-	if (buff == NULL)
+		return (-1);
+	file_desc = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	if (file_desc == -1)
+		return (-1);
+	if (text_content != NULL)
 	{
-		close(file_d);
-		return (0);
+		bytes_w = write(file_desc, text_content, strlen(text_content));
+		if (bytes_w == -1)
+		{
+			close(file_desc);
+			return (-1);
+		}
 	}
-	r_bytes = read(file_d, buff, letters);
-	close(file_d);
-	if (r_bytes == -1)
-	{
-		free(buff);
-		return (0);
-	}
-	w_bytes = write(STDOUT_FILENO, buff, r_bytes);
-	free(buff);
-	if (w_bytes != r_bytes)
-		return (0);
-	return (w_bytes);
+	close(file_desc);
+	return (1);
 }
+
