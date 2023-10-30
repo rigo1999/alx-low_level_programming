@@ -1,53 +1,40 @@
 #include "main.h"
-#include <stddef.h>
 
 /**
- * read_file_and_print - reads a text file and prints it to the standard output
- * @filename: name of the file
- * @num_letters: number of letters to be printed
- *
- * Return: number of letters read and printed
+ * read_textfile - Reads and prints a text file
+ * @filename:  name of file
+ * @letters: The number of letters to read and print
+ * Return: The actual number of letters read and printed
  */
-ssize_t read_file_and_print(const char *filename, size_t num_letters)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int file_descriptor;
+	int file_d;
+	ssize_t read_b, write_bit;
 	char *buffer;
 
-	buffer = malloc(sizeof(*buffer) * (num_letters + 1));
-	if (buffer == NULL || filename == NULL)
+	if (filename == NULL)
+		return (0);
+
+	file_d = open(filename, O_RDONLY);
+	if (file_d == -1)
+		return (0);
+	buffer = malloc(sizeof(char) * letters);
+	if (buffer == NULL)
+	{
+		close(file_d);
+		return (0);
+	}
+	read_b = read(file_d, buffer, letters);
+	close(file_d);
+	if (read_b == -1)
 	{
 		free(buffer);
 		return (0);
 	}
-
-	file_descriptor = open(filename, O_RDONLY);
-	if (file_descriptor == -1)
-	{
-		free(buffer);
-		return (0);
-	}
-
-	ssize_t n_read = read(file_descriptor, buffer, num_letters);
-	if (n_read == -1)
-	{
-		free(buffer);
-		close(file_descriptor);
-		return (0);
-	}
-
-	buffer[n_read] = '\0';
-
-	ssize_t wrote = write(STDOUT_FILENO, buffer, n_read);
-	if (wrote != n_read)
-	{
-		free(buffer);
-		close(file_descriptor);
-		return (0);
-	}
-
+	write_bit = write(STDOUT_FILENO, buffer, read_b);
 	free(buffer);
-	close(file_descriptor);
-
-	return (n_read);
+	if (write_bit != read_b)
+		return (0);
+	return (write_bit);
 }
 
